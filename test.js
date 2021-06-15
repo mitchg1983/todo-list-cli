@@ -1,22 +1,24 @@
-let myList = ["Bacon", 1, 1, 1, 1, "Egg", 1, 1, 1, 1, "Cheese", 1, 1, 1, 1, "Bagel", 1, 1, 1, 1,];
+// console.clear ();
+// let earlyList = ['onion', "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon", "bacon"];
+// let myList = JSON.parse(earlyList);
+// console.log ('Your list is', myList);
+// console.log ('Your list type is', typeof myList);
 
 
-function displayList (myList) {
-    let text = '';
-    
-    for (i = 0; i < myList.length; i++) {
-        if (myList[i] != 1 && myList[i] != 2) {
-            text += myList[i] + ", ";
-        }
-    }
-    return text
-}
+// let test = myList.slice(2, 5);
 
-
-console.log (displayList (myList));
+// console.log (test)
 
 
 
-// if (myList[i] != 1) {
-//     text += myList[i] + ", ";
-// }
+let testList = '["bacon", "headlights", "fantasia", "chair", "apple", "bacon", "headlights", "fantasia", "chair", "apple", "bacon", "headlights", "fantasia", "chair", "apple", "bacon", "headlights", "fantasia", "chair", "apple"]';
+console.log (testList);
+console.log (typeof testList);
+
+
+
+let testParse = JSON.parse(testList);
+console.log (testParse);
+console.log (typeof testParse);
+
+console.log (testParse.splice(1,2));
