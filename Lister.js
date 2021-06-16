@@ -109,11 +109,18 @@ while (running === 1) {
         testSplice.push(movSplice[0], 1, 1, 1, 1);
     }
     
+    //These two actions, complete & restore, were trickier than I expected. I had problems putting arrays into
+    //other arrays. The item at index 3, woulf be another array itself! I think I could have made it work
+    //but I started to see this code like the movie Inception. The actions here will pull the chosen item, and
+    //the four 'slots' next to it, out of the array. Then just the item name is moved, and I write in four new
+    //empty 'slots' for it. I think I could have figured out a way to copy everything over, but I was having
+    //problems with letters and JSON parse.
+
     if (userCommand === 'Restore' || userCommand === 'restore') {
         console.clear ();
         console.log ('You have chosen to Restore an item to your to-do list.');
         console.log ('Type the number of the item you would like to Restore.');
-        console.log (displayList (myListArray));
+        console.log (displayList (testSplice));
         compNum = prompt('>');
         choice = (compNum * 5);
         let movSplice = testSplice.splice(choice,5);
@@ -135,12 +142,17 @@ while (running === 1) {
     
     if (userCommand === 'Clear' || userCommand === 'clear') {
         console.log ('You have chosen to clear your list.');
-        console.log ('Type in CLEAR to confirm, or anything else to CANCEL.');
+        console.log ('Type in CLEAR to confirm, CLEAR DONE to empty your completed list, or anything else to CANCEL.');
         let clearList = prompt ('>');
         if (clearList === 'CLEAR') {
             console.log ('Your list has been cleared. Press ENTER to continue.')
             prompt ('>');
             myListArray = [];
+        }
+        if (clearList === 'CLEAR DONE') {
+            console.log ('Your Completed list has been cleared. Press ENTER to continue.')
+            prompt ('>');
+            testSplice = [];
         }
         else {
             console.log ('Action cancelled. Press ENTER to continue.');
@@ -171,10 +183,32 @@ while (running === 1) {
         running = 0;
     }
     
+    if (userCommand != 'Exit' && userCommand != 'exit' && userCommand != 'Done' && userCommand != 'done' && userCommand != 'View' 
+        && userCommand != 'view' && userCommand != 'Add' && userCommand != 'add' && userCommand != 'Clear' && userCommand != 'clear' 
+        && userCommand != 'Rename' && userCommand != 'rename' && userCommand != 'Restore' && userCommand != 'restore' 
+        && userCommand != 'Complete' && userCommand != 'complete' && userCommand != 'Edit' && userCommand != 'exit') {
+        console.clear();
+        console.log ('Command not recognized, please try again.');
+        console.log ('');
+        console.log ('');
+        console.log ('Press ENTER to continue...');
+        prompt ('>');
+    }
 }
 
 
-
+//I spent so much time rewriting code and just learning in general, that I was unable to hit the stretch stretch goals. I had fun with
+//this one! I feel like I had to go back and do all of our old homework and exercises again to really grasp the content here. But
+//it's all clicking a lot more.
+//
+//I think I can easily implement some of the stretch goals, I had already thought of the priority system. A better approach, 
+//with even more hindsight now, would be to have each list item be it's own array. This is something I thought of early on but I
+//was not confident enough to follow through with it. Each list item could be an array, where index 0 is the item, index 1 is the priority,
+//index 2 is the timestamp, etc...
+//
+//This is a concept of how I would implement the stretch stretch goals.
+//
+//  [ ["Bacon", 1, '15.09.2021.6:34AM'], ["Errands", 3]        ]
 
 //This is the exit message to the user.
 if (running === 0) {
